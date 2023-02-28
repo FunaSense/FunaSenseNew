@@ -5,7 +5,7 @@ local LocalPlayer = game:GetService("Players").LocalPlayer
 local Mouse = LocalPlayer:GetMouse()
 local HttpService = game:GetService("HttpService")
 
-local OrionLib = {
+local FunaSenseLib = {
 	Elements = {},
 	ThemeObjects = {},
 	Connections = {},
@@ -33,7 +33,7 @@ local Success, Response = pcall(function()
 end)
 
 if not Success then
-	warn("\nOrion Library - Failed to load Feather Icons. Error code: " .. Response .. "\n")
+	warn("\nFunaSense - Failed to load Feather Icons. Error code: " .. Response .. "\n")
 end	
 
 local function GetIcon(IconName)
@@ -44,53 +44,53 @@ local function GetIcon(IconName)
 	end
 end   
 
-local Orion = Instance.new("ScreenGui")
-Orion.Name = "Orion"
+local FunaSense = Instance.new("ScreenGui")
+FunaSense.Name = "FunaSense"
 if syn then
-	syn.protect_gui(Orion)
-	Orion.Parent = game.CoreGui
+	syn.protect_gui(FunaSense)
+	FunaSense.Parent = game.CoreGui
 else
-	Orion.Parent = gethui() or game.CoreGui
+	FunaSense.Parent = gethui() or game.CoreGui
 end
 
 if gethui then
 	for _, Interface in ipairs(gethui():GetChildren()) do
-		if Interface.Name == Orion.Name and Interface ~= Orion then
+		if Interface.Name == FunaSense.Name and Interface ~= FunaSense then
 			Interface:Destroy()
 		end
 	end
 else
 	for _, Interface in ipairs(game.CoreGui:GetChildren()) do
-		if Interface.Name == Orion.Name and Interface ~= Orion then
+		if Interface.Name == FunaSense.Name and Interface ~= FunaSense then
 			Interface:Destroy()
 		end
 	end
 end
 
-function OrionLib:IsRunning()
+function FunaSenseLib:IsRunning()
 	if gethui then
-		return Orion.Parent == gethui()
+		return FunaSense.Parent == gethui()
 	else
-		return Orion.Parent == game:GetService("CoreGui")
+		return FunaSense.Parent == game:GetService("CoreGui")
 	end
 
 end
 
 local function AddConnection(Signal, Function)
-	if (not OrionLib:IsRunning()) then
+	if (not FunaSenseLib:IsRunning()) then
 		return
 	end
 	local SignalConnect = Signal:Connect(Function)
-	table.insert(OrionLib.Connections, SignalConnect)
+	table.insert(FunaSenseLib.Connections, SignalConnect)
 	return SignalConnect
 end
 
 task.spawn(function()
-	while (OrionLib:IsRunning()) do
+	while (FunaSenseLib:IsRunning()) do
 		wait()
 	end
 
-	for _, Connection in next, OrionLib.Connections do
+	for _, Connection in next, FunaSenseLib.Connections do
 		Connection:Disconnect()
 	end
 end)
