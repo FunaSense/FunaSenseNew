@@ -481,7 +481,6 @@ function FunaSenseLib:MakeWindow(WindowConfig)
 	WindowConfig.IntroText = WindowConfig.IntroText or "FunaSense"
 	WindowConfig.CloseCallback = WindowConfig.CloseCallback or function() end
 	WindowConfig.ShowIcon = WindowConfig.ShowIcon or false
-	WindowConfig.Icon = WindowConfig.Icon or "rbxassetid://8834748103"
 	FunaSenseLib.Folder = WindowConfig.ConfigFolder
 	FunaSenseLib.SaveCfg = WindowConfig.SaveConfig
 
