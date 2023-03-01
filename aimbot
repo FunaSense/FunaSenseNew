@@ -1,6 +1,11 @@
 if not game:IsLoaded() then
     game.Loaded:Wait()
 end
+
+if not getgenv().legit  then
+    getgenv().legit = false
+end
+
 local Area = game:GetService("Workspace")
 local RunService = game:GetService("RunService")
 local UIS = game:GetService("UserInputService")
